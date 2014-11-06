@@ -45,15 +45,19 @@ class MyApp:
                 # "global" makes sure that we can access our oval and our drawpad
 		global oval
 		global drawpad
-                x1,y1,x2,y2 = drawpad.coords(player)
+		global player
+		drawpad.move(player,0,-10)
+		global target
 		global targetx1, targety1, targetx2, targety2
-
+                px1,py1,px2,py2 = drawpad.coords(player)
 
 		# Ensure that we are doing our collision detection
 		# After we move our object!
+	        if (px1 > targetx1 and px2 < targetx2) and (py1 > targety1 and py2 < targety2):
+	            drawpad.itemconfig(target, fill='red')
 	
-	
-		
+		else:
+		    drawpad.itemconfig(target, fill='blue')
 myapp = MyApp(root)
 
 root.mainloop()
